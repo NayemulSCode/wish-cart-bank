@@ -25,7 +25,7 @@
             <div class="col-md-4">
                 <div class="deposite status">
                     <h5>Deposit</h5>
-                    <h2>$000</h2>
+                    <h2>$ <span id="currentDeposit">00</span> </h2>
                 </div>
             </div>
             <div class="col-md-4">
@@ -37,7 +37,7 @@
             <div class="col-md-4">
                 <div class="balnace status">
                     <h5>Balance</h5>
-                    <h2>$1300</h2>
+                    <h2>$<span id="currentBalance">1300</span></h2>
                 </div>
             </div>
         </div>
@@ -45,9 +45,9 @@
             <div class="col-md-6">
                 <div class="deposite-amount transaction">
                     <h4>Deposit</h4>
-                    <input class="form-control" type="text" placeholder="$ amount you want to deposit">
+                    <input id="depositAmount" class="form-control" type="text" placeholder="$ amount you want to deposit">
                     <br>
-                    <button class="btn btn-success">Deposit</button>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button>
                 </div>
             </div>
             <div class="col-md-6">
@@ -61,6 +61,7 @@
         </div>
     </div>
     <script>
+        //login button
         const loginBtn = document.getElementById("login");
         loginBtn.addEventListener("click", function(){
             const loginArea = document.getElementById("login-area");
@@ -68,7 +69,33 @@
             const transactionArea = document.getElementById("transaction-area");
             transactionArea.style.display = "block";
         })
+        //deposit buttion
+        const depostiBtn = document.getElementById("addDeposit");
+        depostiBtn.addEventListener("click", function(){
+            //input value catch
+            const depositAmount = document.getElementById("depositAmount").value;
+            const depositNumber = parseFloat(depositAmount);
+            // //update value in span tag
+            // const currentDeposit = document.getElementById("currentDeposit").innerText;
+            // const currentDepositNumber = parseFloat(currentDeposit);
+            // const totalDeposit = depositNumber + currentDepositNumber;
+            // //show total deposit value in span tag
+            // document.getElementById("currentDeposit").innerText = totalDeposit;
+            
+            
+            //function call
+            updateSpanText("currentDeposit", depositNumber);
+            updateSpanText("currentBalance", depositNumber);
+            //for blank input field
+            document.getElementById("depositAmount").value = "";
 
+        })
+        function updateSpanText(id, depositNumber){
+            const current = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(current);
+            const totalBalance = depositNumber + currentNumber;
+            document.getElementById(id).innerText = totalBalance;
+        }
     </script>
 </body>
 </html>
