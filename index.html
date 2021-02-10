@@ -76,10 +76,15 @@
             const depositNumber = getInputNumber("depositAmount");
             
             //function call
-            updateSpanText("currentDeposit", depositNumber);
-            updateSpanText("currentBalance", depositNumber);
-            //for blank input field
-            document.getElementById("depositAmount").value = "";
+            if(depositNumber <0){
+                alert("Negative Number is Not Allow");
+            }
+            else{
+                updateSpanText("currentDeposit", depositNumber);
+                updateSpanText("currentBalance", depositNumber);
+                //for blank input field
+                document.getElementById("depositAmount").value = "";
+            }
 
         })
         //withdraw button event handler
